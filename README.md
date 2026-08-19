@@ -1,38 +1,32 @@
 # Codingbox
 
-**Codingbox** is a real, compiled desktop IDE—not a web app or an Electron shell. It is written in modern **C++17** with the native **Qt Widgets** toolkit. The interface deliberately uses a deep-blue palette, light-blue square borders, and a coding-font-first layout.
+Codingbox is a focused desktop IDE for building and running projects locally. It is built with C++ and Qt Widgets and has a high-contrast blue interface designed around keyboard-driven coding.
 
 ![License: BSD-2-Clause](https://img.shields.io/badge/license-BSD--2--Clause-1677b7.svg)
 ![C++17](https://img.shields.io/badge/C%2B%2B-17-1677b7.svg)
-![Qt](https://img.shields.io/badge/Qt-Widgets-1677b7.svg)
+![Qt Widgets](https://img.shields.io/badge/Qt-Widgets-1677b7.svg)
 
-## What is included
+## Features
 
-- Native desktop window, custom title bar, window controls, menus, and file dialogs
-- A source editor with line numbers, current-line highlighting, syntax colors, tabs, and unsaved-file indicators
-- Workspace explorer that can open a real directory on disk
-- Save and Save As support for local files
-- Resizable integrated terminal that runs local shell commands, command palette, and run workflow
-- Run support for saved C/C++, Python, JavaScript, and shell source files using locally installed toolchains
-- Flat square styling: no browser chrome, no rounded-card interface, no embedded web runtime
+- Source editor with line numbers, current-line highlighting, syntax colors, tabs, and unsaved-file indicators
+- Local workspace explorer with native folder and file dialogs
+- Save and Save As support
+- Integrated terminal for running local shell commands
+- Run support for saved C, C++, Python, JavaScript, and shell files when their toolchains are installed
+- Command palette, keyboard shortcuts, custom window controls, and resizable editor and terminal panes
+- Flat deep-blue interface with square light-blue borders and a coding-font-first layout
 
-## Download a compiled build
+## Download
 
-For a ready-to-run version, open this repository’s **[Releases](../../releases)** tab and download the package for your operating system once a version is published.
-
-> If a package for your OS is not available yet, use the source build instructions below.
-
-### Release automation
-
-The cross-platform release workflow is intentionally kept as [`docs/release-workflow.yml.example`](docs/release-workflow.yml.example) until the repository’s GitHub App has **Workflows: write** permission. Once that permission is approved, move it to `.github/workflows/release.yml`; tagged versions will then build and attach Windows, macOS, and Linux packages to GitHub Releases.
+Prebuilt packages are available from the repository’s [Releases](../../releases) page when a version is published. Choose the package for your operating system and follow the included launch instructions.
 
 ## Build from source
 
-Codingbox needs only a C++ compiler, CMake, and Qt Widgets. Qt 6 is preferred; Qt 5.15+ is supported by the CMake project.
+Codingbox requires a C++ compiler, CMake, and Qt Widgets. Qt 6 is recommended; Qt 5.15 or newer is also supported.
 
 ### Linux
 
-On Debian, Ubuntu, Linux Mint, or a related distribution:
+**Debian, Ubuntu, Linux Mint, and related distributions**
 
 ```bash
 sudo apt update
@@ -45,7 +39,7 @@ cmake --build build --parallel
 ./build/Codingbox
 ```
 
-On Fedora:
+**Fedora**
 
 ```bash
 sudo dnf install gcc-c++ cmake qt6-qtbase-devel
@@ -56,7 +50,7 @@ cmake --build build --parallel
 ./build/Codingbox
 ```
 
-For Arch Linux:
+**Arch Linux**
 
 ```bash
 sudo pacman -S --needed base-devel cmake qt6-base
@@ -69,7 +63,7 @@ cmake --build build --parallel
 
 ### macOS
 
-Install the command-line tools, CMake, and Qt:
+Install the Xcode command-line tools, CMake, and Qt:
 
 ```bash
 xcode-select --install
@@ -82,13 +76,13 @@ cmake --build build --parallel
 open build/Codingbox.app
 ```
 
-If you installed Qt using the official Qt installer rather than Homebrew, replace `CMAKE_PREFIX_PATH` with your Qt installation, for example `~/Qt/6.8.0/macos`.
+If Qt was installed with the official Qt installer, replace `CMAKE_PREFIX_PATH` with your Qt installation location, such as `~/Qt/6.8.0/macos`.
 
 ### Windows
 
-The easiest path is **Visual Studio 2022** with the **Desktop development with C++** workload, [CMake](https://cmake.org/download/), and Qt 6 installed through the [Qt Online Installer](https://www.qt.io/download-open-source).
+Install **Visual Studio 2022** with the **Desktop development with C++** workload, [CMake](https://cmake.org/download/), and Qt 6 from the [Qt Online Installer](https://www.qt.io/download-open-source).
 
-Open **x64 Native Tools Command Prompt for VS 2022**, then run:
+Open **x64 Native Tools Command Prompt for VS 2022** and run:
 
 ```bat
 git clone https://github.com/epsilonet/codingbox.git
@@ -98,27 +92,18 @@ cmake --build build --config Release --parallel
 build\Release\Codingbox.exe
 ```
 
-The `CMAKE_PREFIX_PATH` should point to the Qt kit installed on your machine. For a redistributable build, run Qt’s `windeployqt` against `Codingbox.exe` after compiling.
+Set `CMAKE_PREFIX_PATH` to the Qt kit on your computer. To distribute a local Windows build, run Qt’s `windeployqt` tool against `Codingbox.exe` after compiling.
 
-### Install after building
+## Install after building
 
-CMake also provides a standard install target:
+CMake provides a standard installation target:
 
 ```bash
 cmake --install build --prefix "$HOME/.local"
 ```
 
-On multi-configuration generators such as Visual Studio, add `--config Release`.
-
-## Development
-
-```bash
-cmake -S . -B build
-cmake --build build --parallel
-```
-
-The project intentionally has no Node.js, Chromium, Electron, browser server, or web dependency. See [`CMakeLists.txt`](CMakeLists.txt) for the complete build definition.
+For multi-configuration generators such as Visual Studio, include `--config Release`.
 
 ## License
 
-Codingbox is released under the [BSD 2-Clause License](LICENSE).
+Codingbox is available under the [BSD 2-Clause License](LICENSE).
